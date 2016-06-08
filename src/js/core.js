@@ -82,7 +82,8 @@ class tbmg_core extends Object {
 		} else {
 			this._running = true;
 		}
-		
+		// update _old_ms
+		this._old_ms = new Date().getTime();
 		// start running
 		this._set_request_frame();
 	}
@@ -101,8 +102,6 @@ class tbmg_core extends Object {
 				// add frame count
 				this._f_count += 1;
 			});
-			// update _old_ms
-			this._old_ms = new Date().getTime();
 			this._waiting = true;
 		}
 	}
@@ -141,6 +140,9 @@ class tbmg_core extends Object {
 		this._e_canvas[0].width = x;
 		this._e_canvas[0].height = y;
 		
+		// refresh after reset size
+		this.refresh();
+		
 		// log
 		console.log('core: canvas resize to ' + x + ' x ' + y);
 	}
@@ -165,7 +167,11 @@ class tbmg_core extends Object {
 	
 	_do_move() {
 		// get delta time (ms)
-		let dt = new Date().getTime() - this._old_ms;
+		const new_ms = new Date().getTime();
+		let dt = new_ms - this._old_ms;
+		// update _old_ms
+		this._old_ms = new_ms;
+		
 		// check max dt
 		const max_dt = this.conf.max_time_ms;
 		if (dt > max_dt) {
@@ -197,7 +203,7 @@ class tbmg_core extends Object {
 	}
 	
 	// draw the whole canvas
-	_refresh() {
+	refresh() {
 		// draw background first
 		const bg = this.conf.bg_color;
 		const c = this._c;
@@ -252,7 +258,7 @@ class tbmg_core extends Object {
 	// callback for window.requestAnimationFrame()
 	_on_frame() {
 		this._update();
-		this._refresh();
+		this.refresh();
 	}
 	
 	// mouse move callback

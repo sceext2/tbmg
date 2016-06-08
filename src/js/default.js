@@ -8,7 +8,7 @@ const conf = {
 	ball_count : 50, 	// [球] 物体数量
 	ball_r : 10, 		// [球] 半径 (px)
 	
-	mouse_r: 20, 		// [鼠标] 半径 (px)
+	mouse_r: 30, 		// [鼠标] 半径 (px)
 	
 	move_v: 30, 		// [球] 移动速度, px/s
 	
@@ -19,14 +19,14 @@ const conf = {
 	move_back_r: 10, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
 	
 	// style config
-	bg_color: '#112233', 		// canvas 背景色
+	bg_color: '#091827', 		// canvas 背景色
 	
-	ball_color: '#0000ff', 		// [球] 背景色
-	ball_color_border: '#ffff00', 	// [球] 边框色
+	ball_color: 'rgba(0, 0, 255, 0.5)', 		// [球] 背景色
+	ball_color_border: 'rgba(255, 255, 0, 0.3)', 	// [球] 边框色
 	ball_border_width: 4, 		// [球] 边框宽度 (px)
 	
-	m_color: '#ff0000', 		// [球] 背景色
-	m_color_border: '#0000ff', 	// [球] 边框色
+	m_color: 'rgba(255, 0, 0, 0.4)', 		// [球] 背景色
+	m_color_border: 'rgba(0, 100, 255, 0.5)', 	// [球] 边框色
 	m_border_width: 5, 		// [球] 边框宽度 (px)
 	
 	// limit config

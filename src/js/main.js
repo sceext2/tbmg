@@ -7,6 +7,10 @@ const conf = require('./default.js');
 const lan = require('./lan.js');
 const core = require('./core.js');
 
+// global data
+const etc = {};
+etc.core = null;	// the tbmg core object
+
 
 function start_init() {
 	
@@ -32,6 +36,11 @@ function init_hide_show_about() {
 			
 			show = false;
 		} else {
+			// check and pause core
+			if (etc.core != null) {
+				etc.core.pause();
+			}
+			
 			// show it
 			about.addClass('show');
 			console.log('main: show about page');
@@ -68,6 +77,10 @@ function init_core() {
 	
 	// init fps count
 	init_fps_count(c);
+	
+	etc.core = c;	// save core
+	// draw first frame after core init done
+	c.refresh();
 }
 
 function init_pause(core) {
@@ -120,7 +133,7 @@ function ms_to_time(ms) {
 	const m = Math.floor(s / 60);
 	const o_s = s - m * 60;
 	
-	const h = Math.floor(s / 60);
+	const h = Math.floor(m / 60);
 	const o_m = m - h * 60;
 	
 	function fill_zero(n, l) {
