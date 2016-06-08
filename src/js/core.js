@@ -30,6 +30,7 @@ class tbmg_core extends Object {
 			// }
 		
 		this._running = false;	// core running flag
+		this._f_count = 0;	// draw frame count
 	}
 	
 	// methods
@@ -51,6 +52,14 @@ class tbmg_core extends Object {
 	
 	get_core_time() {
 		return this._time_ms;
+	}
+	
+	get_frame_count() {
+		return this._f_count;
+	}
+	
+	reset_frame_count() {
+		this._f_count = 0;
 	}
 	
 	// update canvas size

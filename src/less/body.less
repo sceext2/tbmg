@@ -18,11 +18,11 @@ code	{
 
 h1, h2	{
 	cursor: default;
+	font-weight: bold;
 }
 
 h1	{
-	margin: 0.5em 0 1em 0;
-	font-size: 3em;
+	font-size: 2.1em;
 }
 
 h2	{
@@ -50,12 +50,13 @@ ul	{
 }
 
 li	{
-}
-li:before	{
+	
+	&:before	{
 	content: "+";
 	display: inline-block;
 	font-size: 1em;
 	padding-right: 1em;
+	}
 }
 
 .about	{
@@ -67,10 +68,104 @@ li:before	{
 	z-index: 2000;
 	
 	h1	{
-		cursor: pointer;
+		text-align: center;
+		
+		span	{
+			display: inline-block;
+			border-radius: 0 0 0.4em 0.4em;
+			padding: 0.4em 0.8em 0.25em 0.8em;
+			cursor: pointer;
+			
+			opacity: 0.6;
+			
+			transition: opacity 400ms;
+			
+			&:hover	{
+				opacity: 1;
+				
+				transition: opacity 100ms;
+			}
+		}
 	}
 }
 
+// main layout
+.main	{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.game, .about	{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.game, .about	{
+	box-sizing: border-box;
+	padding-top: 6em;
+}
+
+.about	{
+	overflow: auto;
+}
+
+.title	{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: auto;
+}
+
+// about hide show style
+.about	{
+	// default hide
+	opacity: 0;
+	top: 100%;
+	
+	transition: top 300ms, opacity 200ms;
+	
+	// show style
+	&.show	{
+		top: 0;
+		opacity: 1;
+		
+		transition: top 200ms, opacity 300ms;
+	}
+}
+
+// game part style
+
+.game	{
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-bottom: 3em;
+	
+	.footer	{
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: auto;
+		
+		text-align: right;
+		
+		.count	{
+			display: inline-block;
+		}
+	}
+	
+	.box	{
+		width: 100%;
+		height: 100%;
+	}
+}
 
 /* end body.less */
 

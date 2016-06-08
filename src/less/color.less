@@ -9,15 +9,16 @@ body	{
 
 a	{
 	color: rgb(100, 200, 100);
-}
-a:hover	{
-	color: rgb(120, 230, 120);
-}
-a:active	{
-	color: rgb(100, 230, 100);
-}
-a:visited	{
-	color: rgb(100, 100, 100);
+	
+	&:hover	{
+		color: rgb(120, 230, 120);
+	}
+	&:active	{
+		color: rgb(100, 230, 100);
+	}
+	&:visited	{
+		color: rgb(100, 100, 100);
+	}
 }
 
 canvas	{
@@ -47,7 +48,16 @@ code	{
 }
 
 .about	{
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 10, 0.9);
+}
+
+.title h1 span	{
+	background-color: rgba(0, 0, 0, 0.8);
+	box-shadow: 0 0 0.3em rgba(0, 100, 0, 0.5);
+}
+
+.box	{
+	background-color: rgb(0, 0, 250);
 }
 
 /* end color.less */

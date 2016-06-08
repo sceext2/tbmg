@@ -19,6 +19,8 @@ const conf = {
 	move_back_r: 10, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
 	
 	// style config
+	bg_color: '#112233', 		// canvas 背景色
+	
 	ball_color: '#0000ff', 		// [球] 背景色
 	ball_color_border: '#ffff00', 	// [球] 边框色
 	ball_border_width: 4, 		// [球] 边框宽度 (px)
