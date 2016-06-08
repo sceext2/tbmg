@@ -1,0 +1,26 @@
+{
+	"name" : "tbmg", 
+	"description" : "tbmg: Tangyi-Black-white-Mouse-Game (idea from http://www.jjwxc.net/onebook.php?novelid=2668001&chapterid=5)", 
+	"license" : "GPL-3.0+", 
+	"homepage" : "https://github.com/sceext2/tbmg", 
+	"version" : "0.1.0-1", 
+	"keywords" : [
+		"tbmg", 
+		"mouse", 
+		"game"
+	], 
+	"bugs" : "https://github.com/sceext2/tbmg/issues", 
+	"author" : "sceext <sceext@foxmail.com>", 
+	"repository" : "sceext2/tbmg", 
+	"dependencies" : {
+		"co" : "4.6"
+	}, 
+	"devDependencies" : {
+		"less" : "2.7", 
+		"browserify" : "13.x"
+	}, 
+	"engines" : {
+	}
+}
+
+
