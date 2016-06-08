@@ -113,6 +113,10 @@ class tbmg_core extends Object {
 		this._running = false;
 	}
 	
+	is_running() {
+		return this._running;
+	}
+	
 	get_core_time() {
 		return this._time_ms;
 	}

@@ -63,10 +63,28 @@ function init_core() {
 		console.log('main: game start ');
 	});
 	
-	// TODO set pause callback
+	// set pause callback
+	init_pause(c);
 	
 	// init fps count
 	init_fps_count(c);
+}
+
+function init_pause(core) {
+	
+	// set anykep up pause
+	$('body').on('keyup', () => {
+		core.pause();
+		
+		console.log('main: pause game');
+	});
+	
+	// set click fps counter to pause
+	$('.footer').on('click', () => {
+		core.pause();
+		
+		console.log('main: pause game (fps) ');
+	});
 }
 
 function init_fps_count(core) {
