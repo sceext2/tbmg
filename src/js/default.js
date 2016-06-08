@@ -10,7 +10,7 @@ const conf = {
 	
 	mouse_r: 30, 		// [鼠标] 半径 (px)
 	
-	move_v: 120, 		// [球] 移动速度, px/s
+	move_v: 150, 		// [球] 移动速度, px/s
 	
 	// game rule config
 	move_random_r: 40, 	// (px) 此半径内没有 其它物体 时, 随机选择方向 运动
@@ -19,7 +19,7 @@ const conf = {
 	move_back_r: 10, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
 	
 	// style config
-	bg_color: '#091827', 		// canvas 背景色
+	bg_color: 'rgba(9, 18, 27, 0.1)', 		// canvas 背景色
 	
 	ball_color: 'rgba(0, 0, 255, 0.5)', 		// [球] 背景色
 	ball_color_border: 'rgba(255, 255, 0, 0.3)', 	// [球] 边框色
