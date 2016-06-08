@@ -10,7 +10,7 @@ const conf = {
 	
 	mouse_r: 30, 		// [鼠标] 半径 (px)
 	
-	move_v: 30, 		// [球] 移动速度, px/s
+	move_v: 50, 		// [球] 移动速度, px/s
 	
 	// game rule config
 	move_random_r: 100, 	// (px) 此半径内没有 其它物体 时, 随机选择方向 运动
@@ -28,6 +28,24 @@ const conf = {
 	m_color: 'rgba(255, 0, 0, 0.4)', 		// [球] 背景色
 	m_color_border: 'rgba(0, 100, 255, 0.5)', 	// [球] 边框色
 	m_border_width: 5, 		// [球] 边框宽度 (px)
+	
+	ball_speed_line_width: 5, 
+	ball_speed_line_color: 'rgba(0, 200, 0, 0.1)', 
+	
+	// big round
+	big_color: 'rgba(0, 0, 0, 0)', 
+	big_color_border: 'rgba(0, 200, 0, 0.04)', 
+	big_border_width: 1, 
+	
+	// small round
+	small_color: 'rgba(0, 0, 255, 0.03)', 
+	small_color_border: 'rgba(0, 255, 0, 0.06)', 
+	small_border_width: 2, 
+	
+	// near round
+	near_color: 'rgba(255, 0, 0, 0.05)', 
+	near_color_border: 'rgba(255, 0, 0, 0.1)', 
+	near_border_width: 3, 
 	
 	// limit config
 	max_time_ms: 100, 	// 最大模拟间隔时间 (ms)

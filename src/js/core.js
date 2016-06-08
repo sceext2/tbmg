@@ -110,6 +110,9 @@ class tbmg_core extends Object {
 	pause() {
 		// just set flag
 		this._running = false;
+		
+		// refresh after pause
+		this.refresh();
 	}
 	
 	is_running() {
@@ -158,7 +161,7 @@ class tbmg_core extends Object {
 		// TODO
 		
 		// check objects move out-of border
-		// TODO
+		this._check_out_border();
 		
 		// TODO
 	}
@@ -189,12 +192,16 @@ class tbmg_core extends Object {
 	
 	// generate a random direction
 	_gen_random_d() {
-	
+		const out = Math.random() * 2 * Math.PI;
+		return out;
 	}
 	
 	// direction (arc [0, 2 * PI]) to v (x, y)
-	_d_to_v(d) {
-		// TODO
+	_d_to_v(d, k) {
+		const x = Math.cos(d) * k;
+		const y = Math.sin(d) * k;
+		
+		return [x, y];
 	}
 	
 	// v (x, y) to direction (arc [0, 2 * PI])
@@ -227,6 +234,8 @@ class tbmg_core extends Object {
 		const c_s = this._c_size;	// current canvas size
 		const count = this.conf.ball_count;
 		
+		const speed_k = this.conf.move_v / 1e3;	// px / ms
+		
 		// create each object, add add it to ol list
 		for (let i = 0; i < count; i++) {
 			const one = {
@@ -242,6 +251,10 @@ class tbmg_core extends Object {
 			const x = make_random_one(c_s[0]);
 			const y = make_random_one(c_s[1]);
 			one.p = [x, y];
+			// set random speed
+			const d = this._gen_random_d();
+			one.v = this._d_to_v(d, speed_k);
+			one.free = true;
 			
 			this._ol.push(one);
 		}
@@ -251,6 +264,29 @@ class tbmg_core extends Object {
 	_check_one(one, dt) {
 		one.p[0] += one.v[0] * dt;
 		one.p[1] += one.v[1] * dt;
+	}
+	
+	_check_out_border() {
+		const s = this._c_size;	// current canvas size
+		// check each ball out-of border, not care the r
+		for (let i = 0; i < this._ol.length; i++) {
+			const one = this._ol[i];
+			const p = one.p;
+			for (let j = 0; j <= 1; j++) {
+				// check left (top)
+				if (p[j] < 0) {
+					one.p[j] = 0;	// reset position to 0
+					if (one.v[j] < 0) {
+						one.v[j] = - one.v[j];	// reset speed
+					}
+				} else if (p[j] > s[j]) {	// check right (bottom)
+					one.p[j] = s[j];
+					if (one.v[j] > 0) {
+						one.v[j] = - one.v[j];
+					}
+				}
+			}
+		}
 	}
 	
 	// callbacks
@@ -273,7 +309,36 @@ class tbmg_core extends Object {
 	
 	_draw_ball(one) {
 		const c = this.conf;
-		this._draw_round(one.p[0], one.p[1], c.ball_r, c.ball_border_width, c.ball_color, c.ball_color_border);
+		
+		const ball_r = c.ball_r;
+		// draw big round and small round
+		const big_r = c.move_random_r + ball_r;
+		const small_r = c.move_sum_r + ball_r;
+		const near_r = c.move_back_r + ball_r;
+		
+		this._draw_round(one.p[0], one.p[1], big_r, c.big_border_width, c.big_color, c.big_color_border);
+		this._draw_round(one.p[0], one.p[1], small_r, c.small_border_width, c.small_color, c.small_color_border);
+		this._draw_round(one.p[0], one.p[1], near_r, c.near_border_width, c.near_color, c.near_color_border);
+		
+		// draw main round
+		this._draw_round(one.p[0], one.p[1], ball_r, c.ball_border_width, c.ball_color, c.ball_color_border);
+		
+		// draw speed line
+		const sp = one.p;	// start point
+		const ep = [sp[0] + one.v[0] * 1e3, sp[1] + one.v[1] * 1e3];	// end point
+		
+		// check game running
+		if (this._running) {
+			// do draw line
+			const t = this._c;
+			t.beginPath();
+			t.moveTo(sp[0], sp[1]);
+			t.lineTo(ep[0], ep[1]);
+			t.lineCap = 'round';
+			t.lineWidth = c.ball_speed_line_width;
+			t.strokeStyle = c.ball_speed_line_color;
+			t.stroke();
+		}
 	}
 	
 	_draw_mouse() {
