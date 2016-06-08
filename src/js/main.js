@@ -102,6 +102,7 @@ function init_pause(core) {
 
 function init_fps_count(core) {
 	const out = $('#c_time_fps');
+	let old_time = 0;
 	
 	// check fps each time
 	function do_fps() {
@@ -110,9 +111,14 @@ function init_fps_count(core) {
 		core.reset_frame_count();
 		
 		const time_ms = core.get_core_time();
+		// make game speed (x)
+		const dt_ms = time_ms - old_time;
+		old_time = time_ms;
+		
+		const x = Math.round(dt_ms) / 1e3;
 		
 		// make text
-		const t = fps + 'fps ' + ms_to_time(time_ms);
+		const t = x + 'x ' + fps + 'fps ' + ms_to_time(time_ms);
 		// update text
 		out.text(t);
 		
@@ -128,7 +134,7 @@ function init_fps_count(core) {
 // base format function
 function ms_to_time(ms) {
 	const s = Math.floor(ms / 1e3);
-	const o_ms = ms - s * 1e3;
+	const o_ms = Math.round(ms - s * 1e3);
 	
 	const m = Math.floor(s / 60);
 	const o_s = s - m * 60;

@@ -5,6 +5,7 @@
 
 const conf = {
 	
+	/*
 	ball_count : 50, 	// [球] 物体数量
 	ball_r : 4, 		// [球] 半径 (px)
 	
@@ -17,6 +18,21 @@ const conf = {
 	move_sum_r: 20, 	// (px) 此半径内有其它 球 时, 向 矢量和 的 正方向 运动 (切换速度)
 				// 否则, 向 矢量和 的 反方向 运动
 	move_back_r: 10, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
+	 */
+	// FIXME
+	ball_count : 128, 	// [球] 物体数量
+	ball_r : 2, 		// [球] 半径 (px)
+	
+	mouse_r: 10, 		// [鼠标] 半径 (px)
+	
+	move_v: 100, 		// [球] 移动速度, px/s
+	
+	// game rule config
+	move_random_r: 16, 	// (px) 此半径内没有 其它物体 时, 随机选择方向 运动
+	move_sum_r: 8, 	// (px) 此半径内有其它 球 时, 向 矢量和 的 正方向 运动 (切换速度)
+				// 否则, 向 矢量和 的 反方向 运动
+	move_back_r: 4, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
+	
 	
 	// style config
 	bg_color: 'rgba(9, 18, 27, 0.1)', 		// canvas 背景色
@@ -48,7 +64,8 @@ const conf = {
 	near_border_width: 3, 
 	
 	// limit config
-	max_time_ms: 50, 	// 最大模拟间隔时间 (ms)
+	max_time_ms: 20, 	// 最大模拟间隔时间 (ms)
+	random_time_ms: 5, 
 	
 	// TODO
 };

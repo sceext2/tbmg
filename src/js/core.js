@@ -179,6 +179,9 @@ class tbmg_core extends Object {
 		const max_dt = this.conf.max_time_ms;
 		if (dt > max_dt) {
 			dt = max_dt;
+			// add random_time
+			const r_ms = Math.random() * this.conf.random_time_ms;
+			dt += r_ms;
 		}
 		
 		// process each ol move
