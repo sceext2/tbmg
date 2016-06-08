@@ -158,12 +158,12 @@ class tbmg_core extends Object {
 		this._do_move();
 		
 		// check rules and update objects status
-		// TODO
+		for (let i = 0; i < this._ol.length; i++) {
+			rule.check_one_move(this, this._ol[i], i);
+		}
 		
 		// check objects move out-of border
 		this._check_out_border();
-		
-		// TODO
 	}
 	
 	// core move function
@@ -206,7 +206,16 @@ class tbmg_core extends Object {
 	
 	// v (x, y) to direction (arc [0, 2 * PI])
 	_v_to_d(x, y) {
-		// TODO
+		const r = Math.sqrt(x * x + y * y);
+		if (r <= 0) {
+			return 0;
+		}
+		const cos_t = x / r;
+		let d = Math.acos(cos_t);
+		if (y < 0) {
+			d += Math.PI;
+		}
+		return d;
 	}
 	
 	// draw the whole canvas
