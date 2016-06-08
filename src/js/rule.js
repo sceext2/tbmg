@@ -7,6 +7,7 @@ function check_one_move(core, o, j) {
 	// get min distent for check level
 	const s = core._c_size;
 	let min_d = Math.sqrt(s[0] * s[0] + s[1] * s[1]);
+	let min_i = j;
 	// check each one
 	for (let i = 0; i < core._ol.length; i++) {
 		const one = core._ol[i];
@@ -18,6 +19,7 @@ function check_one_move(core, o, j) {
 		const d = Math.sqrt(Math.pow(o.p[0] - one.p[0], 2) + Math.pow(o.p[1] - one.p[1], 2));
 		if (d < min_d) {
 			min_d = d;
+			min_i = i;
 		}
 	}
 	// d to reduce ball_r
@@ -48,8 +50,15 @@ function check_one_move(core, o, j) {
 	// check level and change speed
 	if (min_d <= near_r) {
 		// just back speed
-		o.v[0] = - o.v[0];
-		o.v[1] = - o.v[1];
+		//o.v[0] = - o.v[0];
+		//o.v[1] = - o.v[1];
+		// NOTE use a new method to get back speed
+		const one = core._ol[min_i];	// get nearest object
+		// speed to back from this object
+		const old = [o.p[0] - one.p[0], o.p[1] - one.p[1]];
+		
+		const d = core._v_to_d(old[0], old[1]);
+		o.v = core._d_to_v(d, speed_k);
 	} else if (min_d <= small_r) {
 		const v = sum_v(small_r);
 		// make new v

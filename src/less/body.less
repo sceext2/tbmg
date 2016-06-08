@@ -108,7 +108,7 @@ li	{
 
 .game, .about	{
 	box-sizing: border-box;
-	padding-top: 6em;
+	padding-top: 2em;
 }
 
 .about	{
@@ -118,9 +118,16 @@ li	{
 .title	{
 	position: absolute;
 	width: 100%;
-	top: 0;
 	left: 0;
 	height: auto;
+	
+	top: -2em;
+	transition: top 400ms;
+	
+	&:hover	{
+		top: 0;
+		transition: top 200ms;
+	}
 }
 
 // about hide show style
@@ -143,9 +150,10 @@ li	{
 // game part style
 
 .game	{
-	padding-left: 2em;
-	padding-right: 2em;
-	padding-bottom: 3em;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
 	
 	.footer	{
 		position: absolute;
