@@ -161,12 +161,20 @@ class tbmg_core extends Object {
 	
 	_do_move() {
 		// get delta time (ms)
-		const dt = new Date().getTime() - this._old_ms;
+		let dt = new Date().getTime() - this._old_ms;
+		// check max dt
+		const max_dt = this.conf.max_time_ms;
+		if (dt > max_dt) {
+			dt = max_dt;
+		}
 		
 		// process each ol move
 		for (let i = 0; i < this._ol.length; i++) {
 			this._check_one(this._ol[i], dt);
 		}
+		
+		// update core time
+		this._time_ms += dt;
 	}
 	
 	// generate a random direction
