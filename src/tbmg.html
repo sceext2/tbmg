@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- tbmg.html, tbmg/src/
+   - (tbmg: Tangyi-Black-white-Mouse-Game, idea from http://www.jjwxc.net/onebook.php?novelid=2668001&chapterid=5)
+   - language: Chinese (zh_cn) 
+   - https://github.com/sceext2/tbmg/
+  -->
+<title>tbmg: 汤义-黑白块-鼠标拼图游戏</title>
+<link rel="stylesheet" type="text/css" href="./main.css" />
+<script type="text/javascript" src="./jquery-2.js" ></script>
+</head>
+<body>
+
+<div class="main" >
+	<div class="title" >
+		<h1>tbmg: 汤义-黑白块-鼠标拼图游戏</h1>
+	</div>	<!-- .title -->
+	<div class="game" >
+		<div class="box" >
+			<canvas id="c_0" >
+				<p>你的浏览器不支持 html5 的 canvas 特性. </p>
+			</canvas>
+		</div>	<!-- .box -->
+		<div class="footer" >
+			<div class="count" >
+			</div>	<!-- .count -->
+		</div>	<!-- .footer -->
+	</div>	<!-- .game -->
+	<div class="about" >
+		<h2>设置</h2>
+		<div class="config" >
+		TODO
+		</div>	<!-- .config -->
+		<h2>关于</h2>
+		<div class="about_info" >
+			<p>tbmg: 汤义-黑白块-鼠标拼图游戏</p>
+			<p>version 0.0.1.0 test201606081216</p>
+			
+			<div class="readme" >
+				<h2>说明</h2>
+				<p>此游戏基于一个小说中的设定, 以下为小说原文: </p>
+				<blockquote>
+					<p>其中汤义和黑白块儿都最喜欢的是“拼图”游戏。
+					汤义从控制台的柜子里拿出五十个电动毛绒球扔到地上，那些毛绒球便在飞船的有机玻璃地板上快速滚动起来。
+					这些玩具带有红外传感器和动力装置，汤义在里面写了一些简单的程序，让它们的运动具有一定的规律性。</p>
+					<p>这些毛绒球的运动规则大体是这样的：</p>
+					<ul>
+						<li>1、当周围三十厘米内没有其他物体的时，随机选择方向做直线运动。</li>
+						<li>2、当周围十到三十厘米内有其他毛绒球时，向那些毛绒球的反方向或矢量和反方向做直线运动。</li>
+						<li>3、当周围十厘米以内又其他毛绒球时，向那些毛绒球的正方向或矢量和正方向做直线运动。</li>
+						<li>4、当周围三厘米内有其他物体时，向反方向做直线运动。</li>
+					</ul>
+					<p>这样设定程序的结果是，这些毛绒球在相距十厘米之内时倾向于黏在一起，
+					以间距约为三厘米的团聚方式一起运动，而相距十厘米到三十厘米时又倾向于互相远离。
+					而黑白块儿要做的就是按照汤义的指示把这些乱跑的毛绒球像牧羊一样归整到一起，组成汤义想要的图案。</p>
+				</blockquote>
+				<p>(引用 自 <a href="http://www.jjwxc.net/onebook.php?novelid=2668001&amp;chapterid=5">http://www.jjwxc.net/onebook.php?novelid=2668001&amp;chapterid=5</a>)
+				<br /> (<code>2016.06</code>)</p>
+			</div>	<!-- .readme -->
+			
+			<p><a href="https://github.com/sceext2/tbmg/" >https://github.com/sceext2/tbmg/</a></p>
+		</div>	<!-- .about_info -->
+	</div>	<!-- .about -->
+</div>	<!-- .main -->
+
+<!-- -->
+<script type="text/javascript" src="./main.js" ></script>
+</body>
+</html>
+
+
