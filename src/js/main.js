@@ -5,16 +5,14 @@
 
 const conf = require('./default.js');
 const lan = require('./lan.js');
-
 const core = require('./core.js');
-
-// TODO
 
 
 function start_init() {
 	
 	init_hide_show_about();
 	
+	init_core();
 	// TODO
 }
 
@@ -43,6 +41,31 @@ function init_hide_show_about() {
 	}
 	
 	title.on('click', on_click);
+}
+
+// init core
+function init_core() {
+	// create a core and set it
+	const c = new core();
+	c.conf = conf;
+	
+	// set canvas
+	const canvas = $('#c_0');
+	c.set_canvas(canvas);
+	// init core
+	c.reset();
+	
+	// set start callback
+	canvas.on('click', () => {
+		c.start();
+		
+		// log
+		console.log('main: game start ');
+	});
+	
+	// TODO set pause callback
+	
+	// TODO set show core time and fps count callback
 }
 
 // start init after dom loaded, with jquery-2
