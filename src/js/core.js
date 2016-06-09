@@ -285,6 +285,7 @@ class tbmg_core extends Object {
 			const one = this._ol[i];
 			const p = one.p;
 			for (let j = 0; j <= 1; j++) {
+				
 				// check left (top)
 				if (p[j] < 0) {
 					one.p[j] = 0;	// reset position to 0
@@ -296,7 +297,16 @@ class tbmg_core extends Object {
 					if (one.v[j] > 0) {
 						one.v[j] = - one.v[j];
 					}
-				}
+				} /* */
+				/*
+				// a new out-of-border process
+				// check left (top)
+				if (p[j] < 0) {
+					one.p[j] = s[j];	// reset position to max
+					// not set speed (keep)
+				} else if (p[j] > s[j]) {	// check right (bottom)
+					one.p[j] = 0;	// reset position to 0
+				} /* */
 			}
 		}
 	}

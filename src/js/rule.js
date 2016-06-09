@@ -23,7 +23,7 @@ function check_one_move(core, o, j) {
 		}
 	}
 	// d to reduce ball_r
-	min_d -= core.conf.ball_r;
+	min_d -= (2 * core.conf.ball_r);
 	
 	const big_r = core.conf.move_random_r;
 	const small_r = core.conf.move_sum_r;
@@ -38,7 +38,7 @@ function check_one_move(core, o, j) {
 			}
 			// check d
 			const d = Math.sqrt(Math.pow(o.p[0] - one.p[0], 2) + Math.pow(o.p[1] - one.p[1], 2));
-			if (d - core.conf.ball_r <= r) {
+			if (d - (2 * core.conf.ball_r) <= r) {
 				out[0] += one.v[0];
 				out[1] += one.v[1];
 			}
@@ -56,8 +56,13 @@ function check_one_move(core, o, j) {
 		const one = core._ol[min_i];	// get nearest object
 		// speed to back from this object
 		const old = [o.p[0] - one.p[0], o.p[1] - one.p[1]];
-		
-		const d = core._v_to_d(old[0], old[1]);
+		// check old is zero
+		let d;
+		if (old[0] * old[0] + old[1] * old[1] <= 0) {
+			d = core._gen_random_d();
+		} else {
+			d = core._v_to_d(old[0], old[1]);
+		}
 		o.v = core._d_to_v(d, speed_k);
 	} else if (min_d <= small_r) {
 		const v = sum_v(small_r);
@@ -79,12 +84,25 @@ function check_one_move(core, o, j) {
 		// set free flag
 		o.free = true;
 	}
+	
+	// check mouse position
+	const m_p = core._m_p;
+	const md = Math.sqrt(Math.pow(m_p[0] - o.p[0], 2) + Math.pow(m_p[1] - o.p[1], 2)) 
+	    - (core.conf.mouse_r + core.conf.ball_r);
+	if (md <= near_r) {
+		// set back speed
+		const old = [m_p[0] - o.p[0], m_p[1] - o.p[1]];
+		// check not set zero
+		if (old[0] * old[0] + old[1] * old[1] > 0) {
+			// NOTE mouse drag function
+			o.v = [old[0] / 1e3, old[1] / 1e3];
+		}
+	}
+	
 	// check and set not free flag
 	if (min_d <= big_r) {
 		o.free = false;
 	}
-	
-	// TODO check mouse position
 }
 
 module.exports = {

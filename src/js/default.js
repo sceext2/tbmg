@@ -20,10 +20,10 @@ const conf = {
 	move_back_r: 10, 	// (px) 此半径内有其它 球 时, 向 自身的 反方向 运动
 	 */
 	// FIXME
-	ball_count : 128, 	// [球] 物体数量
+	ball_count : 50, 	// [球] 物体数量
 	ball_r : 2, 		// [球] 半径 (px)
 	
-	mouse_r: 10, 		// [鼠标] 半径 (px)
+	mouse_r: 50, 		// [鼠标] 半径 (px)
 	
 	move_v: 100, 		// [球] 移动速度, px/s
 	
